@@ -23,7 +23,7 @@ sumpd<-tapply(data$steps, data$date, sum)
 sumpd <- data.frame(date=names(sumpd),steps = sumpd,row.names=NULL)
 sumpd  <- transform(sumpd , date = as.POSIXct(date))
 par(mar = c(5, 4, 1, 1),las =1)
-qplot(date,steps,data = sumpd,geom = "histogram",stat="identity")
+qplot(date,steps,data = sumpd,geom = "histogram",stat="identity",main = "Histogram of Steps per Day")
 ```
 
 ```
@@ -51,7 +51,35 @@ median(sumpd$steps, na.rm = TRUE)
 
 ## What is the average daily activity pattern?
 
+```r
+avgin<-tapply(data$steps, data$interval, mean,na.rm = TRUE)
+avgin <- data.frame(interval=names(avgin),steps = avgin,row.names=NULL)
+par(mar = c(5, 4, 1, 1),las =1)
+qplot(interval,steps,data=data,geom = "line",stat="summary",fun.y = "mean",main =" time series of average number of steps taken, averaged across all days")
+```
 
+```
+## Warning: Removed 2304 rows containing missing values (stat_summary).
+```
+
+![](PA1_template_files/figure-html/timeseries-1.png) 
+
+This is the max average number of steps in 5-minute interval.
+
+```r
+max(avgin$steps)
+```
+
+```
+## [1] 206.1698
+```
+
+
+
+```r
+mas <- names(which.max(avgin$steps))
+```
+835 in 5-minute interval contains the maximum number of steps on average across all the days in the dataset.
 
 ## Imputing missing values
 
