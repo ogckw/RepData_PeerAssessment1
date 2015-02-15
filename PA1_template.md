@@ -1,4 +1,9 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 
 ## Loading and preprocessing the data
@@ -30,7 +35,7 @@ qplot(date,steps,data = sumpd,geom = "histogram",stat="identity",main = "Histogr
 ## Warning: Removed 8 rows containing missing values (position_stack).
 ```
 
-![](PA1_template_files/figure-html/histogram-1.png) 
+![plot of chunk histogram](figure/histogram-1.png) 
 
 Report the mean and median of the total number of steps taken per day
 
@@ -65,7 +70,7 @@ qplot(interval,steps,data=data,geom = "line",stat="summary",fun.y = "mean",main 
 ## Warning: Removed 2304 rows containing missing values (stat_summary).
 ```
 
-![](PA1_template_files/figure-html/timeseries-1.png) 
+![plot of chunk timeseries](figure/timeseries-1.png) 
 
 This is the max average number of steps and interval in 5-minute interval.
 
@@ -115,7 +120,7 @@ par(mar = c(5, 4, 1, 1),las =1)
 qplot(date,steps.x,data = ndata,geom = "histogram",stat="summary",fun.y = "mean",main = "Histogram of Steps per Day")
 ```
 
-![](PA1_template_files/figure-html/nafix-1.png) 
+![plot of chunk nafix](figure/nafix-1.png) 
 
 Report the mean and median of the total number of steps taken per day with filled missing values.
 
@@ -152,7 +157,7 @@ qplot(interval,steps.x,data=ndata,geom = "line",stat="summary",fun.y = "mean",ma
 weekday)+facet_wrap(~weekday,nrow = 2)
 ```
 
-![](PA1_template_files/figure-html/plot-1.png) 
+![plot of chunk plot](figure/plot-1.png) 
 
 The weekday steps apparently gather in certain part of interval.
 The weekend steps separate in many interval.
