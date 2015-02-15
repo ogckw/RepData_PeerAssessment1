@@ -7,11 +7,20 @@ output:
 
 
 ## Loading and preprocessing the data
-
-
-
+```{r ,echo = TRUE}
+library(ggplot2)
+Sys.setlocale("LC_TIME", "English")
+data<-read.csv(unz("activity.zip", "activity.csv"))
+data <- transform(data, date = as.POSIXct(date))
+```
 ## What is mean total number of steps taken per day?
-
+```{r histogram,fig.height= 4}
+sumpd<-tapply(data$steps, data$date, sum)
+sumpd <- data.frame(date=names(sumpd),steps = sumpd,row.names=NULL)
+sumpd  <- transform(sumpd , date = as.POSIXct(date))
+par(mar = c(5, 4, 1, 1),las =1)
+qplot(date,steps,data = sumpd,geom = "histogram",stat="identity")
+```
 
 
 ## What is the average daily activity pattern?
